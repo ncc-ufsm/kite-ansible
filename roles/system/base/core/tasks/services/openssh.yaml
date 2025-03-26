@@ -1,0 +1,9 @@
+- name: Core | services | Open SSH | configure SSH
+  copy:
+    src: services/openssh/sshd_config
+    dest: /etc/ssh/sshd_config
+    owner: root
+    group: root
+    mode: 0644
+  notify:
+    - restart SSHD

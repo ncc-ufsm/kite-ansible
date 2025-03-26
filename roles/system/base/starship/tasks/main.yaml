@@ -1,0 +1,15 @@
+- name: Starship | get latest version
+  uri:
+    url: "https://api.github.com/repos/starship/starship/releases/latest"
+  register: starship_latest_release
+  changed_when: false
+
+- name: Starship | get current version
+  shell: "starship --version | cut -d ' ' -f2 | head -1"
+  register: starship_current_version
+  failed_when: false
+  changed_when: false
+
+- name: Starship | install Starship
+  shell: "curl -fsSL https://starship.rs/install.sh | sh -s -- --force"
+  when: "starship_latest_release.json.tag_name != 'v' ~ starship_current_version.stdout"

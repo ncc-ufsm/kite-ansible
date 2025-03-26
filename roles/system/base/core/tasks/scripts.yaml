@@ -1,0 +1,31 @@
+- name: Core | Scripts | generate provision-system.sh
+  template:
+    src: scripts/provision-system.sh.j2
+    dest: /usr/local/sbin/provision-system
+    owner: root
+    group: root
+    mode: 0755
+
+- name: Core | Scripts | generate provision-user.sh
+  template:
+    src: scripts/provision-user.sh.j2
+    dest: /usr/local/bin/provision-user
+    owner: root
+    group: root
+    mode: 0755
+
+- name: Core | Scripts | generate pull-guest-skel.sh
+  template:
+    src: scripts/pull-guest-skel.sh.j2
+    dest: /usr/local/sbin/pull-guest-skel
+    owner: root
+    mode: 0755
+    group: root
+
+- name: Core | Scripts | generate push-guest-skel.sh
+  template:
+    src: scripts/push-guest-skel.sh.j2
+    dest: /usr/local/sbin/push-guest-skel
+    owner: root
+    mode: 0755
+    group: root

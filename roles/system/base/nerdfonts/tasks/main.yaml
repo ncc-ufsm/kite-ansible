@@ -1,0 +1,43 @@
+- name: Nerd Fonts | create base directory
+  file:
+    path: /opt/nerd-fonts-3.3.0
+    state: directory
+    owner: root
+    group: root
+    mode: 0755
+
+- name: Nerd Fonts | create directory for nerd fonts
+  file:
+    path: "/opt/nerd-fonts-3.3.0/{{ item }}"
+    state: directory
+    owner: root
+    group: root
+    mode: 0755
+  loop:
+    - JetBrainsMono
+
+- name: Nerd Fonts | install nerd fonts
+  unarchive:
+    src: "https://github.com/ryanoasis/nerd-fonts/releases/download/v3.3.0/{{ item }}.tar.xz"
+    dest: "/opt/nerd-fonts-3.3.0/{{ item }}"
+    remote_src: yes
+    creates: "/opt/nerd-fonts-3.3.0/{{ item }}/README.md"
+    owner: root
+    group: root
+    mode: 0644
+  loop:
+    - JetBrainsMono
+
+- name: Nerd Fonts | create versionless link
+  file:
+    src: /opt/nerd-fonts-3.3.0
+    dest: /opt/nerd-fonts
+    state: link
+    force: yes
+
+- name: Nerd Fonts | create link to system fonts
+  file:
+    src: /opt/nerd-fonts
+    dest: /usr/share/fonts/nerd-fonts
+    state: link
+    force: yes

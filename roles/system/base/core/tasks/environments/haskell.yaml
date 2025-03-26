@@ -1,0 +1,7 @@
+- name: Core | environments | Haskell | install Haskell
+  apt:
+    name: "{{ item }}"
+  loop:
+    - ghc
+    - cabal-install
+    - haskell-stack

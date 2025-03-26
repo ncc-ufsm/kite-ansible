@@ -1,0 +1,32 @@
+- name: Eclipse | prepare Eclipse Java 2024-12 directory
+  file:
+    path: /opt/eclipse-java-2024-12/
+    state: directory
+    owner: root
+    group: root
+    mode: 0755
+
+- name: Eclipse | install Eclipse Java 2024-12
+  unarchive:
+    src: https://mirror.umd.edu/eclipse/technology/epp/downloads/release/2024-12/R/eclipse-java-2024-12-R-linux-gtk-x86_64.tar.gz
+    dest: /opt/eclipse-java-2024-12/
+    creates: /opt/eclipse-java-2024-12/eclipse/eclipse
+    owner: root
+    group: root
+    mode: 0755
+    remote_src: yes
+
+- name: Eclipse | create versionless link
+  file:
+    src: /opt/eclipse-java-2024-12
+    dest: /opt/eclipse-java
+    state: link
+    force: yes
+
+- name: Eclipse | copy desktop entry
+  copy:
+    src: eclipse.desktop
+    dest: /usr/local/share/applications/eclipse.desktop
+    owner: root
+    group: root
+    mode: 0644

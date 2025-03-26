@@ -1,0 +1,11 @@
+- name: Core | services | configure subordinate UID count on login.defs
+  lineinfile:
+    path: /etc/login.defs
+    regexp: "^SUB_UID_COUNT"
+    line: "SUB_UID_COUNT 0"
+
+- name: Core | services | configure subordinate GID count on login.defs
+  lineinfile:
+    path: /etc/login.defs
+    regexp: "^SUB_GID_COUNT"
+    line: "SUB_GID_COUNT 0"

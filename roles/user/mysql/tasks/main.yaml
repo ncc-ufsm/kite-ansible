@@ -1,0 +1,15 @@
+- name: MySQL | copy icon
+  copy:
+    src: mysql.svg
+    dest: "{{ ansible_env.HOME }}/.local/share/icons/hicolor/scalable/apps/mysql.svg"
+
+- name: MySQL | copy script
+  copy:
+    src: mysql.sh
+    dest: "{{ ansible_env.HOME }}/.local/bin/mysql"
+    mode: '0755'
+
+- name: MySQL | copy desktop entry
+  copy:
+    src: mysql.desktop
+    dest: "{{ ansible_env.HOME }}/.local/share/applications/mysql.desktop"

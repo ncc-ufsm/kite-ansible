@@ -1,0 +1,5 @@
+- name: Core | environments | Java | install JDK 17
+  apt:
+    name: "{{ item }}"
+  with_items:
+    - openjdk-17-jdk

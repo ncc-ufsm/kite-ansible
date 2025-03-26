@@ -1,0 +1,24 @@
+- name: Gnome | extensions | Dash to Dock | install Dash to Dock
+  command: "{{ ansible_env.HOME }}/.local/bin/gext -F update -i -y dash-to-dock@micxgx.gmail.com"
+  register: gnome_dash_to_dock_install_result
+  changed_when: "'Nothing to update' not in gnome_dash_to_dock_install_result.stdout"
+
+- name: Gnome | extensions | Dash to Dock | set fixed
+  community.general.dconf:
+    key: /org/gnome/shell/extensions/dash-to-dock/dock-fixed
+    value: 'true'
+
+- name: Gnome | extensions | Dash to Dock | set dock position
+  community.general.dconf:
+    key: /org/gnome/shell/extensions/dash-to-dock/dock-position
+    value: "'LEFT'"
+
+- name: Gnome | extensions | Dash to Dock | set maximum icon size
+  community.general.dconf:
+    key: /org/gnome/shell/extensions/dash-to-dock/dash-max-icon-size
+    value: '32'
+
+- name: Gnome | extensions | Dash to Dock | enable extend height
+  community.general.dconf:
+    key: /org/gnome/shell/extensions/dash-to-dock/extend-height
+    value: 'true'

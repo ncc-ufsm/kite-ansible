@@ -1,0 +1,23 @@
+---
+- name: Core | users | jaime | create user
+  user:
+    uid: 2002
+    name: jaime
+    comment: Jaime
+    shell: /bin/bash
+    password: "$6$bCu9EH73r/3ErNXF$1/PWSjUsIakG.ea4K1BZHhqfXhb5hqOF3qwkyWtOC9iYUYI67xf/NXyz0ImWJ2Xgwz/PWysbuDnyaKWLr3DEW."
+    append: true
+    groups: staff
+
+- name: Core | users | jaime | append public keys
+  authorized_key:
+    user: jaime
+    key: https://github.com/jaimeadf.keys
+
+- name: Core | users | jaime | copy account file
+  copy:
+    src: users/jaime/account
+    dest: /var/lib/AccountsService/users/jaime
+    owner: root
+    group: root
+    mode: 0600

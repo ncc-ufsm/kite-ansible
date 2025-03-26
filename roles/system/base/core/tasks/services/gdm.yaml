@@ -1,0 +1,15 @@
+- name: Core | services | GDM | copy PostLogin handler
+  copy:
+    src: services/gdm/PostLogin.sh
+    dest: /etc/gdm3/PostLogin/Default
+    owner: root
+    group: root
+    mode: 0755
+
+- name: Core | services | GDM | copy PostSession handler
+  copy:
+    src: services/gdm/PostSession.sh
+    dest: /etc/gdm3/PostSession/Default
+    owner: root
+    group: root
+    mode: 0755

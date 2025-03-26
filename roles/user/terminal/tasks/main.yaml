@@ -1,0 +1,9 @@
+- name: Gnome Terminal | set custom font
+  community.general.dconf:
+    key: /org/gnome/terminal/legacy/profiles:/:b1dcc9dd-5262-4d8d-a863-c897e6d979b9/font
+    value: "'JetBrainsMono Nerd Font 11'"
+
+- name: Gnome Terminal | disable system font
+  community.general.dconf:
+    key: /org/gnome/terminal/legacy/profiles:/:b1dcc9dd-5262-4d8d-a863-c897e6d979b9/use-system-font
+    value: 'false'

@@ -1,0 +1,4 @@
+- name: Git | copy global .gitprofile
+  copy:
+    src: .gitconfig
+    dest: "{{ ansible_env.HOME }}/.gitconfig"

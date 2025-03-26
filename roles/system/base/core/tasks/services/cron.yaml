@@ -1,0 +1,5 @@
+- name: Core | services | cron | schedule system provisioning at boot
+  cron:
+    name: system provisioning at boot
+    special_time: reboot 
+    job: echo "hi" && /usr/local/sbin/provision-system > /tmp/provision-system.log 2>&1

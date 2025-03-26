@@ -1,0 +1,22 @@
+- name: QGIS | add repository
+  deb822_repository:
+    name: qgis
+    types: deb
+    uris: https://qgis.org/debian
+    suites: "{{ ansible_distribution_release }}"
+    components: main
+    architectures: amd64
+    signed_by: https://download.qgis.org/downloads/qgis-archive-keyring.gpg
+  register: qgis_repository
+
+- name: QGIS | update apt cache
+  apt:
+    update_cache: yes
+  when: qgis_repository.changed
+
+- name: QGIS | install QGIS
+  apt:
+    name: "{{ item }}"
+  loop:
+    - qgis
+    - qgis-plugin-grass

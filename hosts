@@ -1,0 +1,5 @@
+[source]
+ncc-080027b5ba6b ansible_host=192.168.15.61
+
+[replicas]
+ncc-080027508a9c ansible_host=192.168.15.62

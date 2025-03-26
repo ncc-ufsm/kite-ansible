@@ -1,0 +1,6 @@
+---
+- name: Core | tweaks | set up keyrings
+  copy:
+    src: tweaks/keyrings
+    dest: "{{ ansible_env.HOME }}/.local/share"
+

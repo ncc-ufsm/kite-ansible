@@ -1,0 +1,38 @@
+- name: DBest | install DBest@c3610d746bdda2a9878d9d1dc4a5cf3b4a9168e4
+  get_url:
+    url: https://github.com/mergen-sergio/DBest/raw/c3610d746bdda2a9878d9d1dc4a5cf3b4a9168e4/DBest.jar
+    dest: /usr/local/share/java/DBest-c3610d746bdda2a9878d9d1dc4a5cf3b4a9168e4.jar
+    owner: root
+    group: root
+    mode: 0644
+
+- name: DBest | create versionless link
+  file:
+    src: /usr/local/share/java/DBest-f904ca5.jar
+    dest: /usr/local/share/java/DBest.jar
+    state: link
+    force: yes
+  
+- name: DBest | copy icon
+  copy:
+    src: dbest-512x512.png
+    dest: /usr/local/share/icons/hicolor/512x512/apps/dbest.png
+    owner: root
+    group: root
+    mode: 0644
+
+- name: DBest | copy launcher script
+  copy:
+    src: dbest.sh
+    dest: /usr/local/bin/dbest
+    owner: root
+    group: root
+    mode: 0755
+
+- name: DBest | copy desktop entry
+  copy:
+    src: dbest.desktop
+    dest: /usr/local/share/applications/dbest.desktop
+    owner: root
+    group: root
+    mode: 0644

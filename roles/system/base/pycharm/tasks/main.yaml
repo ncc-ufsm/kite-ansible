@@ -1,0 +1,24 @@
+- name: PyCharm | install PyCharm CE 2024.3.4
+  unarchive:
+    src: https://download-cdn.jetbrains.com/python/pycharm-community-2024.3.4.tar.gz
+    dest: /opt/
+    creates: /opt/pycharm-community-2024.3.4/bin/pycharm
+    owner: root
+    group: root
+    mode: 0755
+    remote_src: yes
+
+- name: PyCharm | create versionless link
+  file:
+    src: /opt/pycharm-community-2024.3.4
+    dest: /opt/pycharm-community
+    state: link
+    force: yes
+
+- name: PyCharm | copy desktop entry
+  copy:
+    src: jetbrains-pycharm-ce.desktop
+    dest: /usr/local/share/applications/jetbrains-pycharm-ce.desktop
+    owner: root
+    group: root
+    mode: 0644

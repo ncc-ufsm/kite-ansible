@@ -1,0 +1,31 @@
+---
+- name: Core | users | guest | create user
+  user:
+    uid: 1000
+    name: guest
+    comment: Visitante
+    shell: /bin/bash
+    password: ''
+    password_lock: false
+    append: yes
+    groups: dialout
+  
+- name: Core | users | guest | configure subordinate UIDs
+  lineinfile:
+    path: /etc/subuid
+    regexp: "^guest:"
+    line: "guest:100000:65536"
+    create: yes
+    owner: root
+    group: root
+    mode: 0644
+
+- name: Core | users | guest | configure subordinate GIDs
+  lineinfile:
+    path: /etc/subgid
+    regexp: "^guest:"
+    line: "guest:100000:65536"
+    create: yes
+    owner: root
+    group: root
+    mode: 0644

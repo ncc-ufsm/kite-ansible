@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=Logisim
+Comment=An educational tool for designing and simulating digital logic circuits, featuring a simple-to-learn interface, hierarchical circuits, wire bundles, and a large component library.
+Comment[pt_BR]=Uma ferramenta educacional para projetar e simular circuitos lógicos digitais, com uma interface de fácil aprendizado, circuitos hierárquicos, agrupamento de fios e uma ampla biblioteca de componentes.
+Exec=/usr/local/bin/logisim
+Icon=logisim
+Terminal=false
+Categories=Simulation;Education;

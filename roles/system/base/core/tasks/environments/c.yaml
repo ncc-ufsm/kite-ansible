@@ -1,0 +1,21 @@
+- name: Core | environments | C | install GNU tools
+  apt:
+    name: "{{ item }}"
+  loop:
+    - gcc
+    - g++
+    - gdb
+
+- name: Core | environments | C | install LLVM tools
+  apt:
+    name: "{{ item }}"
+  loop:
+    - clang
+    - lldb
+
+- name: Core | environments | C | install libraries
+  apt:
+    name: "{{ item }}"
+  loop:
+    - libcaca-dev
+    - liballegro-ttf5-dev

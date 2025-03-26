@@ -1,0 +1,38 @@
+- name: brModelo | install brModelo 3.31
+  get_url:
+    url: https://github.com/chcandido/brModelo/releases/download/3.31/brModelo.jar
+    dest: /usr/local/share/java/brModelo-3.31.jar
+    owner: root
+    group: root
+    mode: 0644
+
+- name: brModelo | create versionless link
+  file:
+    src: /usr/local/share/java/brModelo-3.31.jar
+    dest: /usr/local/share/java/brModelo.jar
+    state: link
+    force: yes
+  
+- name: brModelo | copy icon
+  copy:
+    src: brmodelo.svg
+    dest: /usr/local/share/icons/hicolor/scalable/apps/brmodelo.svg
+    owner: root
+    group: root
+    mode: 0644
+
+- name: brModelo | copy launcher script
+  copy:
+    src: brmodelo.sh
+    dest: /usr/local/bin/brmodelo
+    owner: root
+    group: root
+    mode: 0755
+
+- name: brModelo | copy desktop entry
+  copy:
+    src: brmodelo.desktop
+    dest: /usr/local/share/applications/brmodelo.desktop
+    owner: root
+    group: root
+    mode: 0644

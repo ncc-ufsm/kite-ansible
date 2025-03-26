@@ -1,0 +1,10 @@
+{
+    "policies": {
+        "OverrideFirstRunPage": "",
+        "OverridePostUpdatePage": "",
+        "DontCheckDefaultBrowser": true,
+        "UserMessaging": {
+            "SkipOnboarding": true
+        }
+    }
+}

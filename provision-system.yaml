@@ -1,0 +1,37 @@
+---
+- hosts: all
+  become: yes
+  roles:
+    # - system/base/core
+    # - system/base/brmodelo
+    # - system/base/chrome
+    # - system/base/codeblocks
+    # - system/base/dbest
+    # - system/base/docker
+    # - system/base/eclipse
+    # - system/base/firefox
+    # - system/base/idea
+    # - system/base/libreoffice
+    # - system/base/logisim
+    # - system/base/lol
+    # - system/base/arduino
+    # - system/base/meld
+    # - system/base/nerdfonts
+    # - system/base/netbeans 
+    # - system/base/pycharm
+    # - system/base/qgis
+    # - system/base/rstudio
+    # - system/base/starship
+    # - system/base/valgrind
+    # - system/base/vscode
+    - system/base/weka
+
+- hosts: source
+  become: yes
+  roles:
+    - system/source/core
+
+- hosts: replicas
+  become: yes
+  roles:
+    - system/replica/core

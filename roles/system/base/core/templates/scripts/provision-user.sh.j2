@@ -1,0 +1,6 @@
+#!/bin/bash
+
+repository="{{ provisioning_repository }}"
+branch="{{ provisioning_branch }}"
+
+/usr/bin/ansible-pull -U "${repository}" -C "${branch}" provision-user.yaml

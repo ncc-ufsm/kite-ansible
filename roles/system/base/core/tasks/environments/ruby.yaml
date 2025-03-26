@@ -1,0 +1,3 @@
+- name: Core | environments | Ruby | install Ruby
+  apt:
+    name: ruby-full

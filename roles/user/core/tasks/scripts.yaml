@@ -1,0 +1,6 @@
+---
+- name: Core | scripts | copy init script
+  copy:
+    src: scripts/.init.sh
+    dest: "{{ ansible_env.HOME }}/.init.sh"
+    mode: 0755

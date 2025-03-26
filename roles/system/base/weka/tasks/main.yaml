@@ -1,0 +1,47 @@
+- name: Weka | retrieve installation status
+  stat:
+    path: /opt/weka-3.8.6/weka.sh
+  register: weka_installation_status
+
+- name: Weka | install Weka 3.8.6
+  block: 
+    - name: Weka | empty installation directory
+      file:
+        path: /opt/weka-3.8.6/
+        state: absent
+
+    - name: Weka | create temporary directory
+      tempfile:
+        state: directory
+      register: weka_work_dir
+
+    - name: Weka | unarchive application files
+      unarchive:
+        src: weka-3-8-6-azul-zulu-linux.zip
+        dest: "{{ weka_work_dir.path }}"
+
+    - name: Weka | copy application files
+      copy:
+        src: "{{ weka_work_dir.path }}/weka-3-8-6/"
+        dest: /opt/weka-3.8.6/
+        owner: root
+        group: root
+        mode: 0755
+        remote_src: yes
+  
+  when: weka_installation_status.stat.exists == False
+  
+- name: Weka | create versionless link
+  file:
+    src: /opt/weka-3.8.6
+    dest: /opt/weka
+    state: link
+    force: yes
+
+- name: Weka | copy desktop entry
+  copy:
+    src: weka.desktop
+    dest: /usr/local/share/applications/weka.desktop
+    owner: root
+    group: root
+    mode: 0644

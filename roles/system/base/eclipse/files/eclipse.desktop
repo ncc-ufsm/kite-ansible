@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Terminal=false
+Encoding=UTF-8
+Version=1.1
+Name=Eclipse IDE for Java Developers
+StartupWMClass=Eclipse
+Exec=/opt/eclipse-java/eclipse/eclipse
+Categories=Development;IDE;Eclipse
+Icon=/opt/eclipse-java/eclipse/icon.xpm

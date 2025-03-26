@@ -1,0 +1,36 @@
+---
+- name: Pyenv | install Pyenv
+  shell: curl -fsSL https://pyenv.run | bash
+  args:
+    creates: "{{ ansible_env.HOME }}/.pyenv/bin/pyenv"
+    executable: /bin/bash
+
+- name: Pyenv | update Pyenv
+  command: "{{ ansible_env.HOME }}/.pyenv/bin/pyenv update"
+  register: pyenv_update_result
+  changed_when: "'remote' in pyenv_update_result.stderr"
+
+- name: Pyenv | get current global version
+  command: "{{ ansible_env.HOME }}/.pyenv/bin/pyenv global"
+  register: pyenv_current_python_version
+  changed_when: false
+
+- name: Pyenv | get latest python 3 version
+  shell: "{{ ansible_env.HOME }}/.pyenv/bin/pyenv install -l | grep -E '^\\s*3\\.[0-9]+\\.[0-9]+$' | tail -1 | tr -d ' '"
+  register: pyenv_latest_python3_version
+  changed_when: false
+
+- block:
+    - name: Pyenv | install python {{ pyenv_latest_python3_version.stdout }}
+      command: "{{ ansible_env.HOME }}/.pyenv/bin/pyenv install -s {{ pyenv_latest_python3_version.stdout }}"
+      args:
+        creates: "{{ ansible_env.HOME }}/.pyenv/versions/{{ pyenv_latest_python3_version.stdout }}"
+    
+    - name: Pyenv | set python {{ pyenv_latest_python3_version.stdout }} as global version
+      command: "{{ ansible_env.HOME }}/.pyenv/bin/pyenv global {{ pyenv_latest_python3_version.stdout }}"
+
+    - name: Pyenv | uninstall previous global version
+      command: "{{ ansible_env.HOME }}/.pyenv/bin/pyenv uninstall -f {{ pyenv_current_python_version.stdout }}"
+      when: "pyenv_current_python_version.stdout != 'system'"
+    
+  when: "pyenv_latest_python3_version.stdout != pyenv_current_python_version.stdout"

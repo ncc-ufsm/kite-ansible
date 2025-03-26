@@ -1,0 +1,49 @@
+- name: Gnome | install gext
+  community.general.pipx:
+    name: gnome-extensions-cli
+    state: latest
+    system_site_packages: true
+
+- name: Gnome | set keyboard layouts
+  community.general.dconf:
+    key: /org/gnome/desktop/input-sources/sources
+    value: "[('xkb', 'br'), ('xkb', 'us')]"
+
+- name: Gnome | set preferred color scheme
+  community.general.dconf:
+    key: /org/gnome/desktop/interface/color-scheme
+    value: "'prefer-dark'"
+
+- name: Gnome | set gtk theme for legacy applications
+  community.general.dconf:
+    key: /org/gnome/desktop/interface/gtk-theme
+    value: "'Adwaita-dark'"
+
+- name: Gnome | set favorite apps
+  community.general.dconf:
+    key: /org/gnome/shell/favorite-apps
+    value: >-
+      [
+      'firefox.desktop',
+      'google-chrome.desktop',
+      'org.gnome.Nautilus.desktop', 
+      'code.desktop',
+      'jetbrains-pycharm-ce.desktop',
+      'jetbrains-idea-ce.desktop',
+      'eclipse.desktop',
+      'codeblocks.desktop',
+      'apache-netbeans-ide-25.desktop',
+      'org.gnome.Terminal.desktop'
+      ]
+  
+- name: Gnome | disable location services
+  community.general.dconf:
+    key: /org/gnome/system/location/enabled
+    value: 'false'
+
+- name: Gnome | create initial setup done file
+  copy:
+    content: 'yes'
+    dest: "{{ ansible_env.HOME }}/.config/gnome-initial-setup-done"
+
+- import_tasks: extensions/dash_to_dock.yaml

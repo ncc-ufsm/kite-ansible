@@ -1,0 +1,51 @@
+---
+- name: Visual Studio Code | create configuration directory
+  file:
+    path: "{{ ansible_env.HOME }}/.config/Code/User/"
+    state: directory
+
+- name: Visual Studio Code | copy settings.json
+  copy:
+    src: settings.json
+    dest: "{{ ansible_env.HOME }}/.config/Code/User/settings.json"
+
+- name: Visual Studio Code | copy keybindings.json
+  copy:
+    src: keybindings.json
+    dest: "{{ ansible_env.HOME }}/.config/Code/User/keybindings.json"
+
+- name: Visual Studio Code | copy snippets
+  copy:
+    src: snippets/
+    dest: "{{ ansible_env.HOME }}/.config/Code/User/snippets/"
+
+- name: Visual Studio Code | install extensions
+  command: code --install-extension {{ item }}
+  register: vscode_extension_install_result
+  changed_when: "'already installed' not in vscode_extension_install_result.stdout"
+  loop:
+    - editorconfig.editorconfig
+    - haskell.haskell
+    - justusadam.language-haskell
+    - ms-python.debugpy
+    - ms-python.python
+    - ms-python.vscode-pylance
+    - ms-vscode.cmake-tools
+    - ms-vscode.cpptools
+    - ms-vscode.makefile-tools
+    - ms-vsliveshare.vsliveshare
+    - redhat.java
+    - redhat.vscode-xml
+    - redhat.vscode-yaml
+    - reditorsupport.r
+    - ritwickdey.liveserver
+    - shopify.ruby-lsp
+    - timonwong.shellcheck
+    - tomoki1207.pdf
+    - vscjava.vscode-gradle
+    - vscjava.vscode-java-debug
+    - vscjava.vscode-java-dependency
+    - vscjava.vscode-java-test
+    - vscjava.vscode-maven
+    - yzane.markdown-pdf
+    - yzhang.markdown-all-in-one

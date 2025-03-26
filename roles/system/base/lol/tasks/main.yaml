@@ -1,0 +1,15 @@
+- name: League of Legends | copy icon
+  copy:
+    src: league-of-legends-256x256.png
+    dest: /usr/local/share/icons/hicolor/256x256/apps/league-of-legends.png
+    owner: root
+    group: root
+    mode: 0644
+
+- name: League of Legends | copy desktop entry
+  copy:
+    src: league-of-legends.desktop
+    dest: /usr/local/share/applications/league-of-legends.desktop
+    owner: root
+    group: root
+    mode: 0644

@@ -1,0 +1,7 @@
+#!/bin/bash
+
+repository="{{ provisioning_repository }}"
+branch="{{ provisioning_branch }}"
+
+systemd-inhibit --who="ansible-pull" --why="system provisioning" \
+/usr/bin/ansible-pull -U "${repository}" -C "${branch}" provision-system.yaml

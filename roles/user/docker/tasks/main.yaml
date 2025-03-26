@@ -1,0 +1,8 @@
+- name: Docker Engine | install Docker Engine as a non-root user
+  shell: dockerd-rootless-setuptool.sh install
+
+- name: Docker Engine | disable Docker Engine service
+  systemd:
+    name: docker
+    enabled: no
+    scope: user

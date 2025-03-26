@@ -1,0 +1,8 @@
+- name: NetBeans | copy NetBeans 25 package
+  copy:
+    src: apache-netbeans_25-1_all.deb
+    dest: /tmp/apache-netbeans_25-1_all.deb
+
+- name: NetBeans | install NetBeans 25
+  apt:
+    deb: /tmp/apache-netbeans_25-1_all.deb

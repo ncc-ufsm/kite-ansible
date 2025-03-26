@@ -1,0 +1,41 @@
+- name: Docker Engine | add repository
+  deb822_repository:
+    name: docker
+    types: deb
+    uris: https://download.docker.com/linux/debian
+    suites: "{{ ansible_distribution_release }}"
+    components: stable
+    signed_by: https://download.docker.com/linux/debian/gpg
+  register: docker_repository
+
+- name: Docker Engine | update apt cache
+  apt:
+    update_cache: yes
+  when: docker_repository.changed
+
+- name: Docker Engine | install Docker Engine
+  apt:
+    name: "{{ item }}"
+  loop:
+    - docker-ce
+    - docker-ce-cli
+    - containerd.io
+    - docker-buildx-plugin
+    - docker-compose-plugin
+    - docker-ce-rootless-extras
+    - dbus-user-session
+    - slirp4netns
+
+- name: Docker Engine | disable system-wide service
+  systemd:
+    name: "{{ item }}"
+    enabled: no
+    state: stopped
+  loop:
+    - docker.service
+    - docker.socket
+
+- name: Docker Engine | remove inter-process communication file
+  file:
+    path: /var/run/docker.sock
+    state: absent

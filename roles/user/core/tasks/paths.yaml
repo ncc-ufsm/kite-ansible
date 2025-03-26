@@ -1,0 +1,18 @@
+---
+- name: Core | paths | create configuration directories
+  file:
+    path: "{{ item }}"
+    state: directory
+  loop:
+    - "{{ ansible_env.HOME }}/.config/systemd"
+    - "{{ ansible_env.HOME }}/.config/systemd/user"
+    - "{{ ansible_env.HOME }}/.local"
+    - "{{ ansible_env.HOME }}/.local/bin"
+    - "{{ ansible_env.HOME }}/.local/share"
+    - "{{ ansible_env.HOME }}/.local/share/applications"
+    - "{{ ansible_env.HOME }}/.local/share/icons"
+    - "{{ ansible_env.HOME }}/.local/share/icons/hicolor"
+    - "{{ ansible_env.HOME }}/.local/share/icons/hicolor/512x512"
+    - "{{ ansible_env.HOME }}/.local/share/icons/hicolor/scalable"
+    - "{{ ansible_env.HOME }}/.local/share/icons/hicolor/512x512/apps"  
+    - "{{ ansible_env.HOME }}/.local/share/icons/hicolor/scalable/apps"

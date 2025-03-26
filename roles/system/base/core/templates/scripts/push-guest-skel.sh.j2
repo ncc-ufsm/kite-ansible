@@ -1,0 +1,17 @@
+#!/bin/bash
+
+synchub_address="{{ synchub_address }}"
+synchub_port="{{ synchub_port }}"
+
+source="/home/guest/"
+destination="/data/guest-skel/"
+
+rsync -v -r -l -p -t --delete \
+    -e "ssh -p ${synchub_port}" \
+    --exclude ".ssh" \
+    --exclude ".cache" \
+    --exclude ".ansible" \
+    --exclude ".gnupg" \
+    --exclude ".dotnet" \
+    "${source}" \
+    "push@${synchub_address}:${destination}" \

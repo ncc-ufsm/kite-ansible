@@ -1,0 +1,21 @@
+- name: Core | environments | R | add repository
+  deb822_repository:
+    name: r-project
+    types: deb
+    uris: https://cloud.r-project.org/bin/linux/debian
+    suites: ["{{ ansible_distribution_release }}-cran40/"]
+    signed_by: https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x95C0FAF38DB3CCAD0C080A7BDC78B2DDEABC47B7
+  register: r_repository
+  
+- name: Core | environments | R | update apt cache
+  apt:
+    update_cache: yes
+  when: r_repository.changed
+
+- name: Core | environments | R | install R
+  apt:
+    name: "{{ item }}"
+  loop:
+    - r-base
+    - r-base-dev
+    - r-recommended

@@ -1,0 +1,38 @@
+- name: Logisim | install Logisim 2.7.1
+  copy:
+    src: logisim-generic-2.7.1.jar
+    dest: /usr/local/share/java/logisim-generic-2.7.1.jar
+    owner: root
+    group: root
+    mode: 0644
+
+- name: Logisim | create versionless link
+  file:
+    src: /usr/local/share/java/logisim-generic-2.7.1.jar
+    dest: /usr/local/share/java/logisim.jar
+    state: link
+    force: yes
+  
+- name: Logisim | copy icon
+  copy:
+    src: logisim-128x128.png
+    dest: /usr/local/share/icons/hicolor/128x128/apps/logisim.png
+    owner: root
+    group: root
+    mode: 0644
+
+- name: Logisim | copy launcher script
+  copy:
+    src: logisim.sh
+    dest: /usr/local/bin/logisim
+    owner: root
+    group: root
+    mode: 0755
+
+- name: Logisim | copy desktop entry
+  copy:
+    src: logisim.desktop
+    dest: /usr/local/share/applications/logisim.desktop
+    owner: root
+    group: root
+    mode: 0644

@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=League of Legends
+Comment=League of Legends
+Comment[pt_BR]=Liga das Lendas
+Exec=/usr/bin/google-chrome-stable https://youtu.be/dQw4w9WgXcQ
+Icon=league-of-legends
+Terminal=false

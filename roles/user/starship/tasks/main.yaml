@@ -1,0 +1,4 @@
+- name: Starship | copy starship.toml
+  copy:
+    src: starship.toml
+    dest: "{{ ansible_env.HOME }}/.config/starship.toml"

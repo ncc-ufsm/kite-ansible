@@ -1,0 +1,57 @@
+---
+- name: NVM | get latest version
+  uri:
+    url: "https://api.github.com/repos/nvm-sh/nvm/releases/latest"
+  register: nvm_latest_release
+  changed_when: false
+
+- name: NVM | get current version
+  shell: |
+    if [ -s {{ ansible_env.HOME }}/.nvm/nvm.sh ]; then
+      source {{ ansible_env.HOME }}/.nvm/nvm.sh
+      nvm --version
+    else
+      echo 'none'
+    fi
+  args:
+    executable: /bin/bash
+  register: nvm_current_version
+  changed_when: false
+
+- name: NVM | install NVM
+  shell: "curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/{{ nvm_latest_release.json.tag_name }}/install.sh | bash"
+  when: "nvm_latest_release.json.tag_name != 'v' ~ nvm_current_version.stdout"
+
+- name: NVM | get current node version
+  shell: "source {{ ansible_env.HOME }}/.nvm/nvm.sh && nvm current"
+  args:
+    executable: /bin/bash
+  register: nvm_current_node_version
+  changed_when: false
+
+- name: NVM | get latest node LTS version
+  shell: "source {{ ansible_env.HOME }}/.nvm/nvm.sh && nvm version-remote --lts"
+  args:
+    executable: /bin/bash
+  register: nvm_latest_node_version
+  changed_when: false
+
+- block:
+    - name: NVM | install node {{ nvm_latest_node_version.stdout }}
+      shell:  "source {{ ansible_env.HOME }}/.nvm/nvm.sh && nvm install --lts"
+      args:
+        executable: /bin/bash
+        creates: "{{ ansible_env.HOME }}/.nvm/versions/node/{{ nvm_latest_node_version.stdout }}"
+    
+    - name: NVM | set node {{ nvm_latest_node_version.stdout }} as current version
+      shell: "source {{ ansible_env.HOME }}/.nvm/nvm.sh && nvm use --lts"
+      args:
+        executable: /bin/bash
+
+    - name: NVM | uninstall previous node version
+      shell: "source {{ ansible_env.HOME }}/.nvm/nvm.sh && nvm uninstall {{ nvm_current_node_version.stdout }}"
+      args:
+        executable: /bin/bash
+      when: "nvm_current_node_version.stdout != 'none'"
+
+  when: "nvm_latest_node_version.stdout != nvm_current_node_version.stdout"

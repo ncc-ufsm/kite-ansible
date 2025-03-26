@@ -1,0 +1,35 @@
+- name: Firefox | add repository
+  deb822_repository:
+    name: firefox
+    types: deb
+    uris: https://packages.mozilla.org/apt
+    suites: mozilla
+    components: main
+    architectures: amd64
+    signed_by: https://packages.mozilla.org/apt/repo-signing-key.gpg
+  register: firefox_repository
+
+- name: Firefox | update apt cache
+  apt:
+    update_cache: yes
+  when: firefox_repository.changed
+
+- name: Firefox | install Firefox
+  apt:
+    name: firefox
+
+- name: Firefox | create system-wide configuration directory
+  file:
+    path: /etc/firefox
+    state: directory
+    owner: root
+    group: root
+    mode: 0755
+
+- name: Firefox | copy system-wide policies
+  copy:
+    src: policies
+    dest: /etc/firefox
+    owner: root
+    group: root
+    mode: 0644

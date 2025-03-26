@@ -1,0 +1,22 @@
+- name: Visual Studio Code | add repository
+  deb822_repository:
+    name: vscode
+    types: deb
+    uris: https://packages.microsoft.com/repos/code
+    suites: stable
+    components: main
+    architectures:
+      - amd64
+      - arm64
+      - armhf
+    signed_by: https://packages.microsoft.com/keys/microsoft.asc
+  register: vscode_repository
+
+- name: Visual Studio Code | update apt cache
+  apt:
+    update_cache: yes
+  when: vscode_repository.changed
+
+- name: Visual Studio Code | install Visual Studio Code
+  apt:
+    name: code

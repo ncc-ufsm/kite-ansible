@@ -1,0 +1,9 @@
+- name: Core | services | systemd | configure logind
+  copy:
+    src: services/systemd/logind.conf
+    dest: /etc/systemd/logind.conf
+    owner: root
+    group: root
+    mode: 0644
+  notify:
+    - restart logind

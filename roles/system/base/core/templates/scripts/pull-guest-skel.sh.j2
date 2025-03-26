@@ -1,0 +1,12 @@
+#!/bin/bash
+
+synchub_address="{{ synchub_address }}"
+synchub_port="{{ synchub_port }}"
+
+source="/data/guest-skel/"
+destination="/etc/guest-session/skel/"
+
+rsync -v -r -l -p -t --delete \
+    -e "ssh -p ${synchub_port}" \
+    "pull@${synchub_address}:${source}" \
+    "${destination}"

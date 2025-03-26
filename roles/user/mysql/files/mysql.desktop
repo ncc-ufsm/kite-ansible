@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=MySQL
+Comment=MySQL server using Docker.
+Comment[pt_BR]=Servidor MySQL usando Docker.
+Exec=/bin/bash -ic $HOME/.local/bin/mysql
+Icon=mysql
+Terminal=true

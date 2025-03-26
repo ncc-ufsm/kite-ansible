@@ -1,0 +1,8 @@
+- name: RStudio | copy RStudio 2024.12.1 package
+  copy:
+    src: rstudio-2024.12.1-563-amd64.deb
+    dest: /tmp/rstudio-2024.12.1-563-amd64.deb
+
+- name: RStudio | install RStudio 2024.12.1
+  apt:
+    deb: /tmp/rstudio-2024.12.1-563-amd64.deb

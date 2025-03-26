@@ -1,0 +1,10 @@
+[Desktop Entry]
+Version=3.31
+Type=Application
+Name=brModelo
+Comment=An open-source and completely free tool designed for teaching relational database modeling.
+Comment[pt_BR]=Uma ferramenta de código aberto e totalmente gratuita voltada para ensino de modelagem de banco de dados relacionais.
+Exec=/usr/local/bin/brmodelo
+Icon=brmodelo
+Terminal=false
+Categories=Database;UML;

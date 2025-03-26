@@ -1,0 +1,16 @@
+- name: Core | paths | create local software directories
+  file:
+    path: "{{ item }}"
+    state: directory
+    owner: root
+    group: root
+    mode: 0755
+  loop:
+    - /usr/local/bin
+    - /usr/local/sbin
+    - /usr/local/share/java
+    - /usr/local/share/applications
+    - /usr/local/share/icons/hicolor/128x128/apps
+    - /usr/local/share/icons/hicolor/256x256/apps
+    - /usr/local/share/icons/hicolor/512x512/apps
+    - /usr/local/share/icons/hicolor/scalable/apps

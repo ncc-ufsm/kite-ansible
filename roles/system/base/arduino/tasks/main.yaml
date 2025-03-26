@@ -1,0 +1,3 @@
+- name: Arduino | install Arduino IDE
+  apt:
+    name: arduino

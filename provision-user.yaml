@@ -1,0 +1,16 @@
+
+---
+- hosts: all
+  roles:
+    - user/core
+    - user/bash
+    - user/gnome
+    - user/docker
+    - user/git
+    - user/mysql
+    - user/nvm
+    - user/pyenv
+    - user/starship
+    - user/terminal
+    - user/vscode
+

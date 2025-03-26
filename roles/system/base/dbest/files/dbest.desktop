@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=DBest
+Comment=A Database Management System that aims to expose a complete query execution plan. It works with operator trees over tables (e.g., CSV).
+Comment[pt_BR]=Um Sistema Gerenciador de Banco de Dados que visa a exposição de um plano de execução de consulta completo. Ele funciona com árvores de operadores sobre tabelas (Fyi, csv).
+Exec=/usr/local/bin/dbest
+Icon=dbest
+Terminal=false

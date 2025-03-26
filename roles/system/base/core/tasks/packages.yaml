@@ -1,0 +1,101 @@
+- name: Core | packages | install ansible 
+  apt:
+    name: ansible
+
+- name: Core | packages | install filesystems
+  apt:
+    name: "{{ item }}"
+  loop:
+    - nfs-common
+    - exfat-fuse
+    - ntfs-3g
+    - btrfs-progs
+    - bindfs
+
+- name: Core | packages | install software managers
+  apt:
+    name: "{{ item }}"
+  loop:
+    - pipx
+
+- name: Core | packages | install utility packages
+  apt:
+    name: "{{ item }}"
+  loop:
+    - gnupg
+    - wget
+    - curl
+    - cron
+    - htop
+    - btop
+    - neofetch
+    - screenfetch
+    - nano
+    - vim
+    - tmux
+    - colordiff
+    - nmap
+    - sshfs
+    - rsync
+    - tree
+    - uidmap
+    - systemd-container
+
+- name: Core | packages | install development packages
+  apt:
+    name: "{{ item }}"
+  loop:
+    - build-essential
+    - make
+    - cmake
+    - git
+    - git-lfs
+    - bash
+    - pkg-config
+    - software-properties-common
+    - ca-certificates
+    - tk-dev
+    - libssl-dev
+    - libbz2-dev
+    - libreadline-dev
+    - libsqlite3-dev
+    - libncurses5-dev
+    - libncursesw5-dev
+    - libxml2-dev
+    - libxmlsec1-dev
+    - libffi-dev
+    - liblzma-dev
+    - libfuse3-dev
+    - zlib1g-dev
+    - python3
+    - python3-pip
+    - python3-setuptools
+    - python3-venv
+    - python3-wheel
+    - python3-pyflakes
+    - python3-psutil
+    - python3-flake8
+
+- name: Core | packages | install data compression packages
+  apt:
+    name: "{{ item }}"
+  loop:
+    - zip
+    - unzip
+    - p7zip-full
+    - p7zip-rar
+    - xz-utils
+
+- name: Core | packages | purge pre-installed packages
+  apt:
+    name: "{{ item }}"
+    purge: yes
+    state: absent
+  loop:
+    - transmission-gtk 
+    - gnome-games
+
+- name: Core | packages | purge no longer needed packages
+  apt:
+    autoremove: yes
+    purge: yes

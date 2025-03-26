@@ -1,0 +1,30 @@
+- name: Core | users | root | lock user
+  user:
+    name: root
+    password_lock: yes
+
+- name: Core | users | root | create directories
+  file:
+    path: "{{ item }}"
+    state: directory
+    owner: root
+    group: root
+    mode: 0755
+  with_items:
+    - /root/.ssh
+
+- name: Core | users | root | copy SSH known hosts
+  copy:
+    content: "{{ root_ssh_known_hosts }}"
+    dest: /root/.ssh/known_hosts
+    owner: root
+    group: root
+    mode: 0644
+
+- name: Core | users | root | copy SSH private key
+  copy:
+    content: "{{ root_ssh_private_key_content }}"
+    dest: "/root/.ssh/id_{{ root_ssh_private_key_type }}"
+    owner: root
+    group: root
+    mode: 0600

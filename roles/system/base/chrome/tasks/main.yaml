@@ -1,0 +1,24 @@
+- name: Google Chrome | add repository
+  deb822_repository:
+    name: google-chrome
+    types: deb
+    uris: http://dl.google.com/linux/chrome/deb/
+    suites: stable
+    components: main
+    architectures: amd64
+    signed_by: https://dl.google.com/linux/linux_signing_key.pub
+  register: google_chrome_repository
+
+- name: Google Chrome | update apt cache
+  apt:
+    update_cache: yes
+  when: google_chrome_repository.changed
+
+- name: Google Chrome | install Google Chrome
+  apt:
+    name: google-chrome-stable
+
+- name: Google Chrome | copy system-wide policies
+  copy:
+    src: policies
+    dest: /etc/opt/chrome

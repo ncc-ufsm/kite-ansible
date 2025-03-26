@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=Weka
+Comment=Weka is a collection of machine learning algorithms for solving real-world data mining problems.
+Comment[pt_BR]=Weka é uma coleção de algoritmos de machine learning que solucionam problemas reais de mineração de dados.
+Exec=/opt/weka/weka.sh
+Icon=/opt/weka/weka.ico
+Terminal=false
+Categories=Machine Learning;
