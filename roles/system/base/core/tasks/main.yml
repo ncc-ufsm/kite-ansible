@@ -1,8 +1,8 @@
 ---
 - import_tasks: paths.yaml
 - import_tasks: packages.yaml
+- import_tasks: definitions.yaml
 - import_tasks: scripts.yaml
-- import_tasks: tweaks.yaml
 - import_tasks: groups/staff.yaml
 - import_tasks: users/guest.yaml
 - import_tasks: users/jaime.yaml
@@ -12,6 +12,6 @@
 - import_tasks: environments/java.yaml
 - import_tasks: environments/r.yaml
 - import_tasks: environments/ruby.yaml
-- import_tasks: services/gdm.yaml
-- import_tasks: services/openssh.yaml
-- import_tasks: services/systemd.yaml
+- import_tasks: options/gdm.yaml
+- import_tasks: options/openssh.yaml
+- import_tasks: options/systemd.yaml

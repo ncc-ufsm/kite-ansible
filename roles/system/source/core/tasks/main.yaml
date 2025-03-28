@@ -1,2 +1,2 @@
 ---
-- import_tasks: services/cron.yaml
+- import_tasks: cron.yaml

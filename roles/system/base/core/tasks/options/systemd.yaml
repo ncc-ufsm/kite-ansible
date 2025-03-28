@@ -1,6 +1,6 @@
-- name: Core | services | systemd | configure logind
+- name: Core | options | systemd | configure logind
   copy:
-    src: services/systemd/logind.conf
+    src: options/systemd/logind.conf
     dest: /etc/systemd/logind.conf
     owner: root
     group: root

@@ -1,6 +1,6 @@
-- name: Core | services | Open SSH | configure SSH
+- name: Core | options | Open SSH | configure SSH
   copy:
-    src: services/openssh/sshd_config
+    src: options/openssh/sshd_config
     dest: /etc/ssh/sshd_config
     owner: root
     group: root

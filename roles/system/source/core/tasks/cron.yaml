@@ -1,10 +1,10 @@
-- name: Source | services | cron | schedule guest user provisioning at interval
+- name: Source | cron | schedule guest user provisioning at interval
   cron:
     name: guest user provisioning at interval
     minute: 0
     job: machinectl shell guest@.host /usr/local/bin/provision-user < /dev/null
 
-- name: Source | services | cron | schedule guest skeleton push at interval
+- name: Source | cron | schedule guest skeleton push at interval
   cron:
     name: guest skeleton push at interval
     minute: 30
