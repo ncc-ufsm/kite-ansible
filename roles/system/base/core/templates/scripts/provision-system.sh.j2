@@ -3,5 +3,15 @@
 repository="{{ provisioning_repository }}"
 branch="{{ provisioning_branch }}"
 
+vault_args=()
+
+for password_path in ~/.ansible-vault/*.password; do
+    if [ -s "${password_path}" ]; then
+        label="$(basename "${password_path}")"
+        vault_args+=("--vault-id")
+        vault_args+=("${label}@${password_path}")
+    fi
+done
+
 systemd-inhibit --who="ansible-pull" --why="system provisioning" \
-/usr/bin/ansible-pull -U "${repository}" -C "${branch}" provision-system.yaml
+/usr/bin/ansible-pull -U "${repository}" -C "${branch}" "${vault_args[@]}" provision-system.yaml
