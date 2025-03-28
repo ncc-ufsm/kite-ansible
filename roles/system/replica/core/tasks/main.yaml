@@ -1,3 +1,4 @@
 ---
 - import_tasks: users/guest.yaml
 - import_tasks: options/gdm.yaml
+- import_tasks: services.yaml
