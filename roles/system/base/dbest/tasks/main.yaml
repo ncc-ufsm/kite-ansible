@@ -8,7 +8,7 @@
 
 - name: DBest | create versionless link
   file:
-    src: /usr/local/share/java/DBest-f904ca5.jar
+    src: /usr/local/share/java/DBest-c3610d746bdda2a9878d9d1dc4a5cf3b4a9168e4.jar
     dest: /usr/local/share/java/DBest.jar
     state: link
     force: yes
