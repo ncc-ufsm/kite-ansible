@@ -6,7 +6,7 @@ synchub_port="{{ synchub_port }}"
 source="/share/guest-skel/"
 destination="/etc/guest-session/skel/"
 
-rsync -v -r -l -p -t --delete \
+rsync -v -r -l -t --chmod=ugo=rwX --delete \
     -e "ssh -p ${synchub_port}" \
     "pull@${synchub_address}:${source}" \
     "${destination}"
