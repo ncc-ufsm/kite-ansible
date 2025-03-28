@@ -6,12 +6,30 @@ synchub_port="{{ synchub_port }}"
 source="/home/guest/"
 destination="/share/guest-skel/"
 
-rsync -v -r -l -p -t --delete \
+rsync -v -r -l -p -t --delete --delete-excluded \
     -e "ssh -p ${synchub_port}" \
-    --exclude ".ssh" \
-    --exclude ".cache" \
-    --exclude ".ansible" \
-    --exclude ".gnupg" \
-    --exclude ".dotnet" \
+    --include "Área de trabalho/***" \
+    --include "Documentos/***" \
+    --include "Downloads/***" \
+    --include "Imagens/***" \
+    --include "Modelos/***" \
+    --include "Música/***" \
+    --include "Público/***" \
+    --include "Vídeos/***" \
+    --include ".bash_logout" \
+    --include ".bash_profile" \
+    --include ".bashrc" \
+    --include ".profile" \
+    --include ".face" \
+    --include ".face.icon" \
+    --include ".gitconfig" \
+    --include ".config/***" \
+    --include ".docker/***" \
+    --include ".java/***" \
+    --include ".local/***" \
+    --include ".nvm/***" \
+    --include ".pyenv/***" \
+    --include ".vscode/***" \
+    --exclude "*" \
     "${source}" \
-    "push@${synchub_address}:${destination}" \
+    "push@${synchub_address}:${destination}"
