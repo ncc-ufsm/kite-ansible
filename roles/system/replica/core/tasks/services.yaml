@@ -1,0 +1,12 @@
+- name: Core | services | copy guest skel pull service
+  copy:
+    src: services/guest-skel-pull.service
+    dest: /etc/systemd/system/guest-skel-pull.service
+    owner: root
+    group: root
+    mode: 0644
+
+- name: Core | services | enable guest skel pull service
+  systemd:
+    name: guest-skel-pull.service
+    enabled: true

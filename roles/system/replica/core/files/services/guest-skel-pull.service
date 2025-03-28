@@ -1,0 +1,10 @@
+[Unit]
+Description=Automatically pull guest skeleton from synchub server
+After=network.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/sbin/pull-guest-skel
+
+[Install]
+WantedBy=multi-user.target

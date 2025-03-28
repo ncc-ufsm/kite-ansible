@@ -1,0 +1,13 @@
+---
+- name: Core | Services | copy system provisioning service
+  copy:
+    src: services/system-provisioning.service
+    dest: /etc/systemd/system/system-provisioning.service
+    owner: root
+    group: root
+    mode: 0644
+
+- name: Core | Services | enable system provisioning service
+  systemd:
+    name: system-provisioning.service
+    enabled: true
