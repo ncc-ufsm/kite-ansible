@@ -1,3 +1,4 @@
+---
 - name: Core | options | GDM | copy PostLogin handler
   copy:
     src: options/gdm/PostLogin.sh

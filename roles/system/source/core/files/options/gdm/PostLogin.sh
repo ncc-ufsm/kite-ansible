@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 exec > /tmp/PostLogin.log 2>&1
 
