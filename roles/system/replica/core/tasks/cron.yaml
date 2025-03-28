@@ -1,4 +1,4 @@
-- name: Replica | services | cron | schedule guest skeleton pull at boot
+- name: Core | services | cron | schedule guest skeleton pull at boot
   cron:
     name: guest skeleton pull at boot
     special_time: reboot

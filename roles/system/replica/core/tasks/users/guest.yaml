@@ -1,4 +1,4 @@
-- name: Replica | users | guest | create session configuration directories
+- name: Core | users | guest | create session configuration directories
   file:
     path: "{{ item }}"
     state: directory
@@ -11,7 +11,7 @@
     - /var/lib/guest-session
     - /var/lib/guest-session/mnt
   
-- name: Replica | users | guest | create session mount directories
+- name: Core | users | guest | create session mount directories
   file:
     path: "{{ item }}"
     state: directory
@@ -22,7 +22,7 @@
     - /var/lib/guest-session/mnt/data
     - /var/lib/guest-session/mnt/home
 
-- name: Replica | users | guest | allocate loopback file for guest data
+- name: Core | users | guest | allocate loopback file for guest data
   command: fallocate -l 1G /var/lib/guest-session/data.img
   args:
     creates: /var/lib/guest-session/data.img
@@ -44,7 +44,7 @@
     dev: /var/lib/guest-session/home.img
     opts: -m 0
 
-- name: Replica | users | guest | add script to GDM PostLogin handler
+- name: Core | users | guest | add script to GDM PostLogin handler
   blockinfile:
     path: /etc/gdm3/PostLogin/Default
     insertbefore: ".*\\.init.sh.*"
@@ -84,7 +84,7 @@
     append_newline: true
     marker: "# {mark} ANSIBLE MANAGED BLOCK - GUEST SESSION"
 
-- name: Replica | users | guest | add script to GDM PostSession handler
+- name: Core | users | guest | add script to GDM PostSession handler
   blockinfile:
     path: /etc/gdm3/PostSession/Default
     insertafter: EOF
