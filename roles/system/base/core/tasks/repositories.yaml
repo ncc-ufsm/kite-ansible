@@ -1,0 +1,23 @@
+- name: Core | repositories | ensure ansible requirements 
+  fail:
+    msg: "Ansible PPA is not prepared to be installed on this distribution."
+  when: ansible_distribution_release != "bookworm"
+
+- name: Core | repositories | add ansible keyring
+  get_url:
+    url: https://keyserver.ubuntu.com/pks/lookup?fingerprint=on&op=get&search=0x6125E2A8C77F2818FB7BD15B93C4A3FD7BB9C367
+    dest: /usr/share/keyrings/ansible-archive-keyring.asc
+    owner: root
+    group: root
+    mode: 0644
+
+- name: Core | repositories | add ansible repository
+  apt_repository:
+    filename: ansible
+    repo: deb [signed-by=/usr/share/keyrings/ansible-archive-keyring.asc] https://ppa.launchpadcontent.net/ansible/ansible/ubuntu jammy main
+  register: ansible_repository
+
+- name: Core | repositories | update apt cache
+  apt:
+    update_cache: yes
+  when: ansible_repository is changed
