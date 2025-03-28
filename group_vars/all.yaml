@@ -1,4 +1,7 @@
 ---
+provisioning_repository: https://github.com/ncc-ufsm/kite-ansible
+provisioning_branch: main
+
 synchub_address: "192.168.15.2"
 synchub_port: 2222
 
