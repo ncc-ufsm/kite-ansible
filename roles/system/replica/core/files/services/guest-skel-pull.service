@@ -1,6 +1,6 @@
 [Unit]
 Description=Automatically pull guest skeleton from synchub server
-After=network.target
+After=network-online.target
 
 [Service]
 Type=oneshot
