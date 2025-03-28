@@ -4,7 +4,7 @@ synchub_address="{{ synchub_address }}"
 synchub_port="{{ synchub_port }}"
 
 source="/home/guest/"
-destination="/data/guest-skel/"
+destination="/share/guest-skel/"
 
 rsync -v -r -l -p -t --delete \
     -e "ssh -p ${synchub_port}" \
