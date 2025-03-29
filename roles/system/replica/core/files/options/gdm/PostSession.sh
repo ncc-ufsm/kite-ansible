@@ -11,4 +11,5 @@ if [ "${USER}" = "guest" ]; then
     umount ${HOME} || umount -l ${HOME}
     umount ${HOME_LOOPBACK}/lower || umount -l ${HOME_LOOPBACK}/lower
     umount ${HOME_LOOPBACK} || umount -l ${HOME_LOOPBACK}
+    umount ${DATA_LOOPBACK} || umount -l ${DATA_LOOPBACK}
 fi
