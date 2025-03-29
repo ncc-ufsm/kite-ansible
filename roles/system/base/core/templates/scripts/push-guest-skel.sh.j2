@@ -6,7 +6,7 @@ synchub_port="{{ synchub_port }}"
 source="/home/guest/"
 destination="/share/guest-skel/"
 
-rsync -v -r -l -t --chmod=ugo=rwX --delete --delete-excluded \
+rsync -v -r -l -t --chmod=ug=rwX,o=rX --delete --delete-excluded \
     -e "ssh -p ${synchub_port}" \
     --include "Área de trabalho/***" \
     --include "Documentos/***" \
